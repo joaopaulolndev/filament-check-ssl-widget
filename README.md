@@ -21,12 +21,6 @@ You can install the package via composer:
 composer require joaopaulolndev/filament-check-ssl-widget
 ```
 
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="filament-check-ssl-widget-config"
-```
-
 Optionally, you can publish the views using
 
 ```bash
