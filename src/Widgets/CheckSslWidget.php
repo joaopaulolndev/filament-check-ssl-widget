@@ -59,8 +59,8 @@ class CheckSslWidget extends Widget
                     'domain' => $domain,
                     'is_valid' => $certificate->isValid(),
                     'issuer' => $certificate->getIssuer(),
-                    'expiration_date' => $certificate->expirationDate()->diffForHumans(),
-                    'expiration_date_in_days' => $certificate->expirationDate()->diffInDays(),
+                    'expiration_date' => $certificate->expirationDate(),
+                    'expiration_date_in_days' => $certificate->expirationDate(),
                     'favicon' => $this->getFaviconByDomain($domain),
                 ];
             }
