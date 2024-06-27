@@ -4,10 +4,12 @@ namespace Joaopaulolndev\FilamentCheckSslWidget\Widgets;
 
 use AllowDynamicProperties;
 use AshAllenDesign\FaviconFetcher\Facades\Favicon;
+use Exception;
 use Filament\Facades\Filament;
 use Filament\Widgets\Widget;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
+use Spatie\SslCertificate\Exceptions\CouldNotDownloadCertificate\UnknownError;
 use Spatie\SslCertificate\SslCertificate;
 
 #[AllowDynamicProperties]
@@ -32,7 +34,11 @@ class CheckSslWidget extends Widget
         }
 
         foreach ($domains as $domain) {
-            $certificate = SslCertificate::createForHostName($domain);
+            try {
+                $certificate = SslCertificate::createForHostName($domain);
+            } catch (Exception $ignored) {
+                $certificate = null;
+            }
 
             if (Str::contains($domain, ['http://', 'https://'])) {
                 $favicon = Favicon::fetch($domain)->getFaviconUrl();
@@ -42,10 +48,10 @@ class CheckSslWidget extends Widget
 
             $this->certificates[] = [
                 'domain' => $domain,
-                'issuer' => $certificate->getIssuer(),
-                'is_valid' => $certificate->isValid(),
-                'expiration_date' => $certificate->expirationDate()->diffForHumans(),
-                'expiration_date_in_days' => $certificate->expirationDate()->diffInDays(),
+                'is_valid' => $certificate && $certificate->isValid(),
+                'issuer' => $certificate ? $certificate->getIssuer() : null,
+                'expiration_date' => $certificate ? $certificate->expirationDate()->diffForHumans() : null,
+                'expiration_date_in_days' => $certificate ? $certificate->expirationDate()->diffInDays() : null,
                 'favicon' => $favicon,
             ];
         }
