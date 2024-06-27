@@ -3,12 +3,12 @@
 namespace Joaopaulolndev\FilamentCheckSslWidget\Widgets;
 
 use AllowDynamicProperties;
+use AshAllenDesign\FaviconFetcher\Facades\Favicon;
 use Filament\Facades\Filament;
 use Filament\Widgets\Widget;
 use Illuminate\Contracts\View\View;
-use Spatie\SslCertificate\SslCertificate;
-use AshAllenDesign\FaviconFetcher\Facades\Favicon;
 use Illuminate\Support\Str;
+use Spatie\SslCertificate\SslCertificate;
 
 #[AllowDynamicProperties]
 class CheckSslWidget extends Widget
@@ -46,7 +46,7 @@ class CheckSslWidget extends Widget
                 'is_valid' => $certificate->isValid(),
                 'expiration_date' => $certificate->expirationDate()->diffForHumans(),
                 'expiration_date_in_days' => $certificate->expirationDate()->diffInDays(),
-                'favicon' => $favicon
+                'favicon' => $favicon,
             ];
         }
     }
