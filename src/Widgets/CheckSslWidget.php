@@ -4,6 +4,7 @@ namespace Joaopaulolndev\FilamentCheckSslWidget\Widgets;
 
 use AllowDynamicProperties;
 use AshAllenDesign\FaviconFetcher\Facades\Favicon;
+use Exception;
 use Filament\Facades\Filament;
 use Filament\Widgets\Widget;
 use Illuminate\Contracts\View\View;
@@ -30,21 +31,47 @@ class CheckSslWidget extends Widget
         }
 
         foreach ($domains as $domain) {
-            try {
-                $certificate = SslCertificate::createForHostName($domain);
-            } catch (Exception $ignored) {
-                $certificate = null;
-            }
+            if ($this->isValidDomain($domain)) {
+                try {
+                    $certificate = SslCertificate::createForHostName($domain);
+                } catch (Exception $ignored) {
+                    $certificate = null;
+                }
 
-            $this->certificates[] = [
-                'domain' => $domain,
-                'is_valid' => $certificate && $certificate->isValid(),
-                'issuer' => $certificate ? $certificate->getIssuer() : null,
-                'expiration_date' => $certificate ? $certificate->expirationDate()->diffForHumans() : null,
-                'expiration_date_in_days' => $certificate ? $certificate->expirationDate()->diffInDays() : null,
-                'favicon' => $this->getFaviconByDomain($domain),
-            ];
+                $this->certificates[] = [
+                    'domain' => $domain,
+                    'is_valid' => $certificate && $certificate->isValid(),
+                    'issuer' => $certificate ? $certificate->getIssuer() : null,
+                    'expiration_date' => $certificate ? $certificate->expirationDate()->diffForHumans() : null,
+                    'expiration_date_in_days' => $certificate ? $certificate->expirationDate()->diffInDays() : null,
+                    'favicon' => $this->getFaviconByDomain($domain),
+                ];
+            } else {
+                $this->certificates[] = [
+                    'domain' => $domain,
+                    'is_valid' => false,
+                    'issuer' => null,
+                    'expiration_date' => null,
+                    'expiration_date_in_days' => null,
+                    'favicon' => null,
+                ];
+            }
         }
+    }
+
+    private function isValidDomain(string $domain): bool
+    {
+        if (! Str::contains($domain, ['http://', 'https://'])) {
+            $domain = 'https://' . $domain;
+        }
+
+        if (! filter_var($domain, FILTER_VALIDATE_URL)) {
+            return false;
+        }
+
+        $domain = parse_url($domain, PHP_URL_HOST);
+
+        return checkdnsrr($domain, 'A') || checkdnsrr($domain, 'AAAA');
     }
 
     private function getFaviconByDomain(string $domain): ?string
