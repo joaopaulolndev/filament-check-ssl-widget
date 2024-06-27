@@ -9,7 +9,6 @@ use Filament\Facades\Filament;
 use Filament\Widgets\Widget;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
-use Spatie\SslCertificate\Exceptions\CouldNotDownloadCertificate\UnknownError;
 use Spatie\SslCertificate\SslCertificate;
 
 #[AllowDynamicProperties]
