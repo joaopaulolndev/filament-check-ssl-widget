@@ -2,6 +2,15 @@
 
 All notable changes to `filament-check-ssl-widget` will be documented in this file.
 
+## v1.0.2 - 2024-06-27
+
+### What's Changed
+
+* Update README.md by @jeffersonsimaogoncalves in https://github.com/joaopaulolndev/filament-check-ssl-widget/pull/7
+* Adicionando o cache de uma semana para não ficar todo momento buscando informações do certificado SSL. by @jeffersonsimaogoncalves in https://github.com/joaopaulolndev/filament-check-ssl-widget/pull/8
+
+**Full Changelog**: https://github.com/joaopaulolndev/filament-check-ssl-widget/compare/v1.0.1...v1.0.2
+
 ## v1.0.1 - 2024-06-27
 
 ### What's Changed
