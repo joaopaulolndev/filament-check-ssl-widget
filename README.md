@@ -53,18 +53,6 @@ use Joaopaulolndev\FilamentCheckSslWidget\FilamentCheckSslWidgetPlugin;
             'github.com'
         ])
 ])
-                FilamentCheckSslWidgetPlugin::make()
-                 ->domains([
-                    'laravel.com',
-                    'filamentphp.com',
-                    'github.com'
-                 ])
-                    // ->shouldShowTitle(true) // OK
-                    // ->setTitle('Certificates') // OK
-                    // ->setDescription('SSL certificate detail')  // OK
-                    // ->setQuantityPerRow(1)
-                    //->setColumnSpan('full')
-                ,
 ```
 
 Optionally, you can add more configs as example below:
