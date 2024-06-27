@@ -53,7 +53,11 @@ class CheckSslWidget extends Widget
             $domain = 'https://' . $domain;
         }
 
-        return Favicon::fetch($domain)?->cache(now()->addDay())->getFaviconUrl() ?? null;
+        try {
+            return Favicon::fetch($domain)?->cache(now()->addDay())->getFaviconUrl() ?? null;
+        } catch (Exception $ignored) {
+            return null;
+        }
     }
 
     public function shouldShowTitle(): bool
