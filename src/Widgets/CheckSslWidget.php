@@ -59,7 +59,7 @@ class CheckSslWidget extends Widget
         }
     }
 
-    private static function isValidDomain($domain): bool
+    private function isValidDomain($domain): bool
     {
         return (bool) preg_match('/^(?:[a-z0-9](?:[a-z0-9-æøå]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$/isu', $domain);
     }
