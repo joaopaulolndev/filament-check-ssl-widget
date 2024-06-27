@@ -32,7 +32,7 @@ class CheckSslWidget extends Widget
         }
 
         foreach ($domains as $domain) {
-            $this->certificates[] = Cache::remember("filament-check-ssl-widget-$domain", 604800, fn() => $this->getCertificate($domain));
+            $this->certificates[] = Cache::remember("filament-check-ssl-widget-$domain", 604800, fn () => $this->getCertificate($domain));
         }
     }
 
@@ -52,6 +52,7 @@ class CheckSslWidget extends Widget
                 $certificate = SslCertificate::createForHostName($domain);
             } catch (Exception $ignored) {
                 $invalidDomain['favicon'] = $this->getFaviconByDomain($domain);
+
                 return $invalidDomain;
             }
             if ($certificate) {
