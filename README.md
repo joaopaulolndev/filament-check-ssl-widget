@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/joaopaulolndev/filament-check-ssl-widget.svg?style=flat-square)](https://packagist.org/packages/joaopaulolndev/filament-check-ssl-widget)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/joaopaulolndev/filament-check-ssl-widget/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/joaopaulolndev/filament-check-ssl-widget/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/joaopaulolndev/filament-check-ssl-widget/fix-php-code-styling.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/joaopaulolndev/filament-check-ssl-widget/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/joaopaulolndev/filament-check-ssl-widget/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/joaopaulolndev/filament-check-ssl-widget/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/joaopaulolndev/filament-check-ssl-widget.svg?style=flat-square)](https://packagist.org/packages/joaopaulolndev/filament-check-ssl-widget)
 
 The Filament Check Ssl plugin widget designed to show the detail informations about the ssl certificate given domains.
