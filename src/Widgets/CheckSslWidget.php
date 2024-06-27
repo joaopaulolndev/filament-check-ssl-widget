@@ -59,19 +59,9 @@ class CheckSslWidget extends Widget
         }
     }
 
-    private function isValidDomain(string $domain): bool
+    private static function isValidDomain($domain): bool
     {
-        if (! Str::contains($domain, ['http://', 'https://'])) {
-            $domain = 'https://' . $domain;
-        }
-
-        if (! filter_var($domain, FILTER_VALIDATE_URL)) {
-            return false;
-        }
-
-        $domain = parse_url($domain, PHP_URL_HOST);
-
-        return checkdnsrr($domain, 'A') || checkdnsrr($domain, 'AAAA');
+        return (bool)preg_match('/^(?:[a-z0-9](?:[a-z0-9-æøå]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$/isu', $domain);
     }
 
     private function getFaviconByDomain(string $domain): ?string
