@@ -21,9 +21,7 @@ class CheckSslWidget extends Widget
 
     public function __construct()
     {
-        $domains = [
-
-        ];
+        $domains = [];
 
         $plugin = Filament::getCurrentPanel()?->getPlugin('filament-check-ssl-widget');
 
@@ -32,23 +30,30 @@ class CheckSslWidget extends Widget
         }
 
         foreach ($domains as $domain) {
-            $certificate = SslCertificate::createForHostName($domain);
-
-            if (Str::contains($domain, ['http://', 'https://'])) {
-                $favicon = Favicon::fetch($domain)->getFaviconUrl();
-            } else {
-                $favicon = Favicon::fetch('https://' . $domain)->getFaviconUrl();
+            try {
+                $certificate = SslCertificate::createForHostName($domain);
+            } catch (Exception $ignored) {
+                $certificate = null;
             }
 
             $this->certificates[] = [
                 'domain' => $domain,
-                'issuer' => $certificate->getIssuer(),
-                'is_valid' => $certificate->isValid(),
-                'expiration_date' => $certificate->expirationDate()->diffForHumans(),
-                'expiration_date_in_days' => $certificate->expirationDate()->diffInDays(),
-                'favicon' => $favicon,
+                'is_valid' => $certificate && $certificate->isValid(),
+                'issuer' => $certificate ? $certificate->getIssuer() : null,
+                'expiration_date' => $certificate ? $certificate->expirationDate()->diffForHumans() : null,
+                'expiration_date_in_days' => $certificate ? $certificate->expirationDate()->diffInDays() : null,
+                'favicon' => $this->getFaviconByDomain($domain),
             ];
         }
+    }
+
+    private function getFaviconByDomain(string $domain): ?string
+    {
+        if (! Str::contains($domain, ['http://', 'https://'])) {
+            $domain = 'https://' . $domain;
+        }
+
+        return Favicon::fetch($domain)?->cache(now()->addDay())->getFaviconUrl() ?? null;
     }
 
     public function shouldShowTitle(): bool
