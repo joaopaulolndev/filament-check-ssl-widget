@@ -71,12 +71,12 @@ class CheckSslWidget extends Widget
 
     private function isValidDomain($domain): bool
     {
-        return (bool)preg_match('/^(?:[a-z0-9](?:[a-z0-9-æøå]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$/isu', $domain);
+        return (bool) preg_match('/^(?:[a-z0-9](?:[a-z0-9-æøå]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$/isu', $domain);
     }
 
     private function getFaviconByDomain(string $domain): ?string
     {
-        if (!Str::contains($domain, ['http://', 'https://'])) {
+        if (! Str::contains($domain, ['http://', 'https://'])) {
             $domain = 'https://' . $domain;
         }
 
