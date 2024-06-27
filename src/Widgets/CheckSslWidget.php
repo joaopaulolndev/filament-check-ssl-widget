@@ -4,6 +4,7 @@ namespace Joaopaulolndev\FilamentCheckSslWidget\Widgets;
 
 use AllowDynamicProperties;
 use AshAllenDesign\FaviconFetcher\Facades\Favicon;
+use Exception;
 use Filament\Facades\Filament;
 use Filament\Widgets\Widget;
 use Illuminate\Contracts\View\View;
@@ -30,8 +31,10 @@ class CheckSslWidget extends Widget
         }
 
         foreach ($domains as $domain) {
+            $validDomain = $this->isValidDomain($domain);
+
             try {
-                $certificate = SslCertificate::createForHostName($domain);
+                $certificate = $validDomain ? SslCertificate::createForHostName($domain) : null;
             } catch (Exception $ignored) {
                 $certificate = null;
             }
@@ -42,9 +45,14 @@ class CheckSslWidget extends Widget
                 'issuer' => $certificate ? $certificate->getIssuer() : null,
                 'expiration_date' => $certificate ? $certificate->expirationDate()->diffForHumans() : null,
                 'expiration_date_in_days' => $certificate ? $certificate->expirationDate()->diffInDays() : null,
-                'favicon' => $this->getFaviconByDomain($domain),
+                'favicon' => $validDomain ? $this->getFaviconByDomain($domain) : null,
             ];
         }
+    }
+
+    private function isValidDomain($domain): bool
+    {
+        return (bool) preg_match('/^(?:[a-z0-9](?:[a-z0-9-æøå]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$/isu', $domain);
     }
 
     private function getFaviconByDomain(string $domain): ?string
