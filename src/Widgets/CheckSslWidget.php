@@ -8,6 +8,7 @@ use Exception;
 use Filament\Facades\Filament;
 use Filament\Widgets\Widget;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Spatie\SslCertificate\SslCertificate;
 
@@ -31,32 +32,41 @@ class CheckSslWidget extends Widget
         }
 
         foreach ($domains as $domain) {
-            if ($this->isValidDomain($domain)) {
-                try {
-                    $certificate = SslCertificate::createForHostName($domain);
-                } catch (Exception $ignored) {
-                    $certificate = null;
-                }
+            $this->certificates[] = Cache::remember("filament-check-ssl-widget-$domain", 604800, fn() => $this->getCertificate($domain));
+        }
+    }
 
-                $this->certificates[] = [
+    private function getCertificate(string $domain): array
+    {
+        $invalidDomain = [
+            'domain' => $domain,
+            'is_valid' => false,
+            'issuer' => null,
+            'expiration_date' => null,
+            'expiration_date_in_days' => null,
+            'favicon' => null,
+        ];
+
+        if ($this->isValidDomain($domain)) {
+            try {
+                $certificate = SslCertificate::createForHostName($domain);
+            } catch (Exception $ignored) {
+                $invalidDomain['favicon'] = $this->getFaviconByDomain($domain);
+                return $invalidDomain;
+            }
+            if ($certificate) {
+                return [
                     'domain' => $domain,
-                    'is_valid' => $certificate && $certificate->isValid(),
-                    'issuer' => $certificate ? $certificate->getIssuer() : null,
-                    'expiration_date' => $certificate ? $certificate->expirationDate()->diffForHumans() : null,
-                    'expiration_date_in_days' => $certificate ? $certificate->expirationDate()->diffInDays() : null,
+                    'is_valid' => $certificate->isValid(),
+                    'issuer' => $certificate->getIssuer(),
+                    'expiration_date' => $certificate->expirationDate(),
+                    'expiration_date_in_days' => $certificate->expirationDate(),
                     'favicon' => $this->getFaviconByDomain($domain),
-                ];
-            } else {
-                $this->certificates[] = [
-                    'domain' => $domain,
-                    'is_valid' => false,
-                    'issuer' => null,
-                    'expiration_date' => null,
-                    'expiration_date_in_days' => null,
-                    'favicon' => null,
                 ];
             }
         }
+
+        return $invalidDomain;
     }
 
     private function isValidDomain($domain): bool
