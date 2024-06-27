@@ -3,7 +3,6 @@
 namespace Joaopaulolndev\FilamentCheckSslWidget\Widgets;
 
 use AllowDynamicProperties;
-use Carbon\Carbon;
 use Filament\Facades\Filament;
 use Filament\Widgets\Widget;
 use Illuminate\Contracts\View\View;
@@ -35,11 +34,11 @@ class CheckSslWidget extends Widget
 
             $this->certificates[] = [
                 'domain' => $domain,
-				'issuer' => $certificate->getIssuer(),
-				'is_valid' => $certificate->isValid(),
-				'expiration_date' => $certificate->expirationDate()->diffForHumans(),
-				'expiration_date_in_days' => $certificate->expirationDate()->diffInDays()
-			];
+                'issuer' => $certificate->getIssuer(),
+                'is_valid' => $certificate->isValid(),
+                'expiration_date' => $certificate->expirationDate()->diffForHumans(),
+                'expiration_date_in_days' => $certificate->expirationDate()->diffInDays(),
+            ];
         }
     }
 

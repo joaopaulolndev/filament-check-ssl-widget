@@ -2,5 +2,5 @@
 
 return [
     'title' => 'SSL Certificates',
-    'description' => 'List of certificates to check details'
+    'description' => 'List of certificates to check details',
 ];

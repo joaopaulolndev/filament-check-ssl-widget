@@ -9,12 +9,12 @@ use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
+use Joaopaulolndev\FilamentCheckSslWidget\Commands\FilamentCheckSslWidgetCommand;
+use Joaopaulolndev\FilamentCheckSslWidget\Testing\TestsFilamentCheckSslWidget;
 use Livewire\Features\SupportTesting\Testable;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Joaopaulolndev\FilamentCheckSslWidget\Commands\FilamentCheckSslWidgetCommand;
-use Joaopaulolndev\FilamentCheckSslWidget\Testing\TestsFilamentCheckSslWidget;
 
 class FilamentCheckSslWidgetServiceProvider extends PackageServiceProvider
 {
@@ -58,9 +58,7 @@ class FilamentCheckSslWidgetServiceProvider extends PackageServiceProvider
         }
     }
 
-    public function packageRegistered(): void
-    {
-    }
+    public function packageRegistered(): void {}
 
     public function packageBooted(): void
     {

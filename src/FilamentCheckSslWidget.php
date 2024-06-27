@@ -2,6 +2,4 @@
 
 namespace Joaopaulolndev\FilamentCheckSslWidget;
 
-class FilamentCheckSslWidget
-{
-}
+class FilamentCheckSslWidget {}
