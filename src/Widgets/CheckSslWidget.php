@@ -87,31 +87,6 @@ class CheckSslWidget extends Widget
         }
     }
 
-    public static function getSort(): int
-    {
-        $plugin = Filament::getCurrentPanel()?->getPlugin('filament-check-ssl-widget');
-
-        return $plugin->getSort() ?? -1;
-    }
-
-    public function getColumnSpan(): int|string|array
-    {
-        $plugin = Filament::getCurrentPanel()?->getPlugin('filament-check-ssl-widget');
-
-        return $plugin->getColumnSpan() ?? '1/2';
-    }
-
-    public function render(): View
-    {
-        return view(static::$view, [
-            'certificates' => $this->certificates,
-            'shouldShowTitle' => $this->shouldShowTitle(),
-            'title' => $this->title(),
-            'description' => $this->description(),
-            'quantityPerRow' => $this->quantityPerRow() ?? '1',
-        ]);
-    }
-
     public function shouldShowTitle(): bool
     {
         $plugin = Filament::getCurrentPanel()?->getPlugin('filament-check-ssl-widget');
@@ -133,10 +108,35 @@ class CheckSslWidget extends Widget
         return $plugin->getDescription();
     }
 
+    public static function getSort(): int
+    {
+        $plugin = Filament::getCurrentPanel()?->getPlugin('filament-check-ssl-widget');
+
+        return $plugin->getSort() ?? -1;
+    }
+
+    public function getColumnSpan(): int | string | array
+    {
+        $plugin = Filament::getCurrentPanel()?->getPlugin('filament-check-ssl-widget');
+
+        return $plugin->getColumnSpan() ?? '1/2';
+    }
+
     public function quantityPerRow()
     {
         $plugin = Filament::getCurrentPanel()?->getPlugin('filament-check-ssl-widget');
 
         return $plugin->getQuantityPerRow();
+    }
+
+    public function render(): View
+    {
+        return view(static::$view, [
+            'certificates' => $this->certificates,
+            'shouldShowTitle' => $this->shouldShowTitle(),
+            'title' => $this->title(),
+            'description' => $this->description(),
+            'quantityPerRow' => $this->quantityPerRow() ?? '1',
+        ]);
     }
 }
