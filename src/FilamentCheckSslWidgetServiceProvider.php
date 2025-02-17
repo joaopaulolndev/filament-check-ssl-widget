@@ -86,7 +86,7 @@ class FilamentCheckSslWidgetServiceProvider extends PackageServiceProvider
         }
 
         // Testing
-        Testable::mixin(new TestsFilamentCheckSslWidget());
+        Testable::mixin(new TestsFilamentCheckSslWidget);
     }
 
     protected function getAssetPackageName(): ?string
