@@ -17,7 +17,7 @@
 
         <div class="grid grid-cols-1 gap-2 md:grid-cols-{{$quantityPerRow}}">
             @foreach ($certificates as $certificate)
-               <div class="flex items-center justify-between bg-gray-100 dark:bg-gray-700 p-2 rounded-md shadow-sm">
+               <div class="flex items-center justify-between p-2 bg-gray-100 rounded-md shadow-sm dark:bg-gray-700">
                     <span class="flex text-sm font-medium text-gray-800 dark:text-white">
                         @if ($certificate['favicon'])
                             <img src="{{ $certificate['favicon'] }}" style="margin-right: 6px; width: 24px;" />
@@ -26,7 +26,7 @@
                     </span>
                     <span class="flex items-center text-xs text-gray-800 dark:text-white">
                         @if ($certificate['is_valid'])
-                            <li><strong>Expiration: </strong> {{ $certificate['expiration_date']->diffForHumans() }} (<strong class="italic">{{ (int)abs($certificate['expiration_date_in_days']->diffInDays()) }} days</strong>)</li>
+                            <li><strong>{{ __('filament-check-ssl-widget::default.expiration') }}: </strong> {{ $certificate['expiration_date']->diffForHumans() }} (<strong class="italic">{{ (int)abs($certificate['expiration_date_in_days']->diffInDays()) }} {{ __('filament-check-ssl-widget::default.days') }}</strong>)</li>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1" width="16" height="16" style="color: green;margin-left: 8px;">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
