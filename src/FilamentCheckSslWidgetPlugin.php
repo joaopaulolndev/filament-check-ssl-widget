@@ -2,6 +2,7 @@
 
 namespace Joaopaulolndev\FilamentCheckSslWidget;
 
+use Joaopaulolndev\FilamentCheckSslWidget\Widgets\CheckSslWidget;
 use Closure;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
@@ -21,6 +22,10 @@ class FilamentCheckSslWidgetPlugin implements Plugin
 
     public Closure | int $quantityPerRow = 1;
 
+    public string | Closure | null $title = null;
+
+    public string | Closure | null $description = null;
+
     public function getId(): string
     {
         return 'filament-check-ssl-widget';
@@ -29,7 +34,7 @@ class FilamentCheckSslWidgetPlugin implements Plugin
     public function register(Panel $panel): void
     {
         $panel->widgets([
-            Widgets\CheckSslWidget::class,
+            CheckSslWidget::class,
         ]);
     }
 

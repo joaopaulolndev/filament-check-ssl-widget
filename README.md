@@ -1,15 +1,15 @@
 # A filamentPHP widget to get details about ssl certificate
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/joaopaulolndev/filament-check-ssl-widget.svg?style=flat-square)](https://packagist.org/packages/joaopaulolndev/filament-check-ssl-widget)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/joaopaulolndev/filament-check-ssl-widget/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/joaopaulolndev/filament-check-ssl-widget/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/joaopaulolndev/filament-check-ssl-widget/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/joaopaulolndev/filament-check-ssl-widget/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amain)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/joaopaulolndev/filament-check-ssl-widget/run-tests.yml?branch=2.x&label=tests&style=flat-square)](https://github.com/joaopaulolndev/filament-check-ssl-widget/actions?query=workflow%3Arun-tests+branch%3A2.x)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/joaopaulolndev/filament-check-ssl-widget/fix-php-code-style-issues.yml?branch=2.x&label=code%20style&style=flat-square)](https://github.com/joaopaulolndev/filament-check-ssl-widget/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3A2.x)
 [![Total Downloads](https://img.shields.io/packagist/dt/joaopaulolndev/filament-check-ssl-widget.svg?style=flat-square)](https://packagist.org/packages/joaopaulolndev/filament-check-ssl-widget)
 
 The Filament Check Ssl plugin widget designed to show the detail informations about the ssl certificate given domains.
 
 <div class="filament-hidden">
 
-![Screenshot of Application Feature](https://raw.githubusercontent.com/joaopaulolndev/filament-check-ssl-widget/main/art/joaopaulolndev-filament-check-ssl-widget.jpg)
+![Screenshot of Application Feature](https://raw.githubusercontent.com/joaopaulolndev/filament-check-ssl-widget/2.x/art/joaopaulolndev-filament-check-ssl-widget.jpg)
 
 </div>
 
@@ -18,7 +18,7 @@ The Filament Check Ssl plugin widget designed to show the detail informations ab
 You can install the package via composer:
 
 ```bash
-composer require joaopaulolndev/filament-check-ssl-widget
+composer require joaopaulolndev/filament-check-ssl-widget:^2.0
 ```
 
 Optionally, you can publish the views using

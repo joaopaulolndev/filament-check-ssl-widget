@@ -2,7 +2,6 @@
 
 namespace Joaopaulolndev\FilamentCheckSslWidget\Widgets;
 
-use AllowDynamicProperties;
 use AshAllenDesign\FaviconFetcher\Facades\Favicon;
 use Exception;
 use Filament\Facades\Filament;
@@ -12,12 +11,11 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Spatie\SslCertificate\SslCertificate;
 
-#[AllowDynamicProperties]
 class CheckSslWidget extends Widget
 {
     protected static bool $isLazy = false;
 
-    protected static string $view = 'filament-check-ssl-widget::filament.widgets.check-ssl-widget';
+    protected string $view = 'filament-check-ssl-widget::filament.widgets.check-ssl-widget';
 
     protected array $certificates = [];
 
@@ -25,7 +23,7 @@ class CheckSslWidget extends Widget
     {
         $domains = [];
 
-        $plugin = Filament::getCurrentPanel()?->getPlugin('filament-check-ssl-widget');
+        $plugin = Filament::getCurrentOrDefaultPanel()?->getPlugin('filament-check-ssl-widget');
 
         if ($plugin->getDomains()) {
             $domains = $plugin->getDomains();
@@ -90,42 +88,42 @@ class CheckSslWidget extends Widget
 
     public function shouldShowTitle(): bool
     {
-        $plugin = Filament::getCurrentPanel()?->getPlugin('filament-check-ssl-widget');
+        $plugin = Filament::getCurrentOrDefaultPanel()?->getPlugin('filament-check-ssl-widget');
 
         return $plugin->getShouldShowTitle();
     }
 
-    public function title()
+    public function title(): ?string
     {
-        $plugin = Filament::getCurrentPanel()?->getPlugin('filament-check-ssl-widget');
+        $plugin = Filament::getCurrentOrDefaultPanel()?->getPlugin('filament-check-ssl-widget');
 
         return $plugin->getTitle();
     }
 
-    public function description()
+    public function description(): ?string
     {
-        $plugin = Filament::getCurrentPanel()?->getPlugin('filament-check-ssl-widget');
+        $plugin = Filament::getCurrentOrDefaultPanel()?->getPlugin('filament-check-ssl-widget');
 
         return $plugin->getDescription();
     }
 
     public static function getSort(): int
     {
-        $plugin = Filament::getCurrentPanel()?->getPlugin('filament-check-ssl-widget');
+        $plugin = Filament::getCurrentOrDefaultPanel()?->getPlugin('filament-check-ssl-widget');
 
         return $plugin->getSort() ?? -1;
     }
 
     public function getColumnSpan(): int | string | array
     {
-        $plugin = Filament::getCurrentPanel()?->getPlugin('filament-check-ssl-widget');
+        $plugin = Filament::getCurrentOrDefaultPanel()?->getPlugin('filament-check-ssl-widget');
 
         return $plugin->getColumnSpan() ?? '1/2';
     }
 
-    public function quantityPerRow()
+    public function quantityPerRow(): ?int
     {
-        $plugin = Filament::getCurrentPanel()?->getPlugin('filament-check-ssl-widget');
+        $plugin = Filament::getCurrentOrDefaultPanel()?->getPlugin('filament-check-ssl-widget');
 
         return $plugin->getQuantityPerRow();
     }
