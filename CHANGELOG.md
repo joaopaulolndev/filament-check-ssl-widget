@@ -2,6 +2,17 @@
 
 All notable changes to `filament-check-ssl-widget` will be documented in this file.
 
+## v1.0.4 - 2025-08-11
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.3.0 to 2.4.0 by @dependabot[bot] in https://github.com/joaopaulolndev/filament-check-ssl-widget/pull/14
+* Bump aglipanci/laravel-pint-action from 2.5 to 2.6 by @dependabot[bot] in https://github.com/joaopaulolndev/filament-check-ssl-widget/pull/16
+* Bump stefanzweifel/git-auto-commit-action from 5 to 6 by @dependabot[bot] in https://github.com/joaopaulolndev/filament-check-ssl-widget/pull/15
+* Add missing translations by @a21ns1g4ts in https://github.com/joaopaulolndev/filament-check-ssl-widget/pull/13
+
+**Full Changelog**: https://github.com/joaopaulolndev/filament-check-ssl-widget/compare/v1.0.3...v1.0.4
+
 ## v1.0.3 - 2025-02-17
 
 ### What's Changed
