@@ -2,11 +2,11 @@
 
 namespace Joaopaulolndev\FilamentCheckSslWidget;
 
-use Joaopaulolndev\FilamentCheckSslWidget\Widgets\CheckSslWidget;
 use Closure;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Filament\Support\Concerns\EvaluatesClosures;
+use Joaopaulolndev\FilamentCheckSslWidget\Widgets\CheckSslWidget;
 
 class FilamentCheckSslWidgetPlugin implements Plugin
 {
