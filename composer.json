@@ -27,7 +27,6 @@
         "spatie/ssl-certificate": "^2.6"
     },
     "require-dev": {
-        "filament/upgrade": "4.0.0-beta23",
         "laravel/pint": "^1.0",
         "nunomaduro/collision": "^7.9|^8.6",
         "orchestra/testbench": "^8.0|^9.0|^10.0",

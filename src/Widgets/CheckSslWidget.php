@@ -130,7 +130,7 @@ class CheckSslWidget extends Widget
 
     public function render(): View
     {
-        return view(static::$view, [
+        return view($this->view, [
             'certificates' => $this->certificates,
             'shouldShowTitle' => $this->shouldShowTitle(),
             'title' => $this->title(),
