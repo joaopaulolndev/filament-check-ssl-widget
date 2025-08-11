@@ -6,6 +6,7 @@ use Closure;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Filament\Support\Concerns\EvaluatesClosures;
+use Joaopaulolndev\FilamentCheckSslWidget\Widgets\CheckSslWidget;
 
 class FilamentCheckSslWidgetPlugin implements Plugin
 {
@@ -21,6 +22,10 @@ class FilamentCheckSslWidgetPlugin implements Plugin
 
     public Closure | int $quantityPerRow = 1;
 
+    public string | Closure | null $title = null;
+
+    public string | Closure | null $description = null;
+
     public function getId(): string
     {
         return 'filament-check-ssl-widget';
@@ -29,7 +34,7 @@ class FilamentCheckSslWidgetPlugin implements Plugin
     public function register(Panel $panel): void
     {
         $panel->widgets([
-            Widgets\CheckSslWidget::class,
+            CheckSslWidget::class,
         ]);
     }
 
@@ -125,6 +130,12 @@ class FilamentCheckSslWidgetPlugin implements Plugin
 
     public function setQuantityPerRow(Closure | int $value = 1): static
     {
+        if ($value < 1) {
+            $value = 1;
+        }
+        if ($value > 12) {
+            $value = 12;
+        }
         $this->quantityPerRow = $value;
 
         return $this;
