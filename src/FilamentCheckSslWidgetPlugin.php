@@ -130,6 +130,12 @@ class FilamentCheckSslWidgetPlugin implements Plugin
 
     public function setQuantityPerRow(Closure | int $value = 1): static
     {
+        if ($value < 1) {
+            $value = 1;
+        }
+        if ($value > 12) {
+            $value = 12;
+        }
         $this->quantityPerRow = $value;
 
         return $this;
