@@ -2,6 +2,10 @@
 
 All notable changes to `filament-check-ssl-widget` will be documented in this file.
 
+## v3.0.0 - 2026-01-20
+
+**Full Changelog**: https://github.com/joaopaulolndev/filament-check-ssl-widget/compare/v2.0.0...v3.0.0
+
 ## v2.0.0 - 2025-08-11
 
 ### What's Changed
