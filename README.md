@@ -9,7 +9,7 @@ The Filament Check Ssl plugin widget designed to show the detail informations ab
 
 <div class="filament-hidden">
 
-![Screenshot of Application Feature](https://raw.githubusercontent.com/joaopaulolndev/filament-check-ssl-widget/2.x/art/joaopaulolndev-filament-check-ssl-widget.jpg)
+![Screenshot of Application Feature](https://raw.githubusercontent.com/joaopaulolndev/filament-check-ssl-widget/3.x/art/joaopaulolndev-filament-check-ssl-widget.jpg)
 
 </div>
 
@@ -19,13 +19,14 @@ The Filament Check Ssl plugin widget designed to show the detail informations ab
 |-----------------|------------------|
 | 1.x             | 3.x              |
 | 2.x             | 4.x              |
+| 3.x             | 5.x              |
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require joaopaulolndev/filament-check-ssl-widget:^2.0
+composer require joaopaulolndev/filament-check-ssl-widget:^3.0
 ```
 
 Optionally, you can publish the views using
