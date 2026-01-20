@@ -19,6 +19,7 @@ The Filament Check Ssl plugin widget designed to show the detail informations ab
 |-----------------|------------------|
 | 1.x             | 3.x              |
 | 2.x             | 4.x              |
+| 3.x             | 5.x              |
 
 ## Installation
 
